@@ -70,6 +70,5 @@ Temporary Items
 .apdisk
 
 # Stuff created in tmp by OpenID
-tmp/associations
-tmp/nonces
-tmp/temp
+tmp/*
+!tmp/README.md
