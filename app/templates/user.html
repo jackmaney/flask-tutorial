@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-<img src="{{user.avatar(128)}}" alt="{{user.nickname}}" />
-<h1>User: {{user.nickname}}</h1>
+<div style="float:left; padding:15px">
+    <img src="{{user.avatar(128)}}" alt="{{user.nickname}}" />
+</div>
+<div style="padding-top:20px">
+    <h1>User: {{user.nickname}}</h1>
+</div>
+<div style="clear:both;"></div>
 <hr>
 {% for post in posts %}
     {% include "post.html" %}
