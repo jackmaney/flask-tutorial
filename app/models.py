@@ -1,4 +1,5 @@
 from app import db
+from hashlib import md5
 
 ROLE_USER = 0
 ROLE_ADMIN = 1
@@ -10,6 +11,11 @@ class User(db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     role = db.Column(db.SmallInteger, default=ROLE_USER)
     posts = db.relationship('Post', backref='author', lazy='dynamic')
+
+    def avatar(self, size):
+        avatarURL = 'http://www.gravatar.com/avatar/'
+        avatarURL += md5(self.email).hexdigest() + '?d=mm&s=' + str(size)
+        return avatarURL
 
     def is_authenticated(self):
         return True
