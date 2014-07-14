@@ -14,11 +14,20 @@
         <i>Last seen on: {{user.last_seen}}</i>
     </p>
     {% endif %}
-    {% if user.id == g.user.id %}
     <p>
-        <a href="{{ url_for('edit') }}">Edit</a>
-    </p>
+        {# Since every user technically follows themselves,
+            we're decrementing the displayed follower count by 1 #}
+        {{user.followers.count() - 1}} followers |
+    {% if user.id == g.user.id %}
+        <a href="{{ url_for('edit') }}">Edit Your Profile</a>
+    {% elif not g.user.is_following(user) %}
+        <a href="{{ url_for('follow', nickname=user.nickname) }}">Follow</a>
+    {% else %}
+        <a href="{{ url_for('unfollow', nickname=user.nickname )}}">Unfollow</a>
     {% endif %}
+    </p>
+
+
 </div>
 <div style="clear:both;"></div>
 <hr>

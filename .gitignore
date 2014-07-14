@@ -72,3 +72,6 @@ Temporary Items
 # Stuff created in tmp by OpenID
 tmp/*
 !tmp/README.md
+
+# Data
+*.db
