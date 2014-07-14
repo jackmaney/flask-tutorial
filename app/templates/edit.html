@@ -7,6 +7,9 @@
     <p>
         <label for="nickname">Your Nickname:</label> {{form.nickname(size=24)}}
     </p>
+    {% for error in form.errors.nickname %}
+    <br><span style="color: red;">[{{error}}]</span>
+    {% endfor %}
     <p>
         <label for="about_me">About Yourself</label> {{form.about_me(cols=32, rows=4)}}
     </p>
