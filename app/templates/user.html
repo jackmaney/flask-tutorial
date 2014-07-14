@@ -31,7 +31,24 @@
 </div>
 <div style="clear:both;"></div>
 <hr>
-{% for post in posts %}
+{% for post in posts.items %}
     {% include "post.html" %}
 {% endfor %}
+
+<hr>
+
+<div style="float:left;padding-top:20px">
+    {% if posts.has_prev %}
+    <a href="{{ url_for('user', nickname=user.nickname, page=posts.prev_num) }}">Newer Posts</a>
+    {% endif %}
+</div>
+
+<div style="float:right;padding-top:20px">
+    {% if posts.has_next %}
+    <a href="{{ url_for('user', nickname=user.nickname, page=posts.next_num) }}">Older Posts</a>
+    {% endif %}
+</div>
+
+<div style="clear:both"></div>
+
 {% endblock %}
