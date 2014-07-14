@@ -1,3 +1,10 @@
 #!/usr/bin/env python
 from app import app
-app.run(debug=True)
+import sys
+
+debug = False
+
+if "--dev" in sys.argv:
+    debug = True
+
+app.run(debug=debug)
