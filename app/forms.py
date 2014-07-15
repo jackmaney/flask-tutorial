@@ -4,6 +4,10 @@ from wtforms.validators import Required, Length
 from app.models import User
 
 
+class SearchForm(Form):
+    search = TextField('search', validators=[Required()])
+
+
 class PostForm(Form):
     post = TextField('post', validators=[Required()])
 
