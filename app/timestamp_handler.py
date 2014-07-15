@@ -4,7 +4,6 @@ import datetime
 def howLongAgo(ts):
     now = datetime.datetime.utcnow()
     seconds = (now - ts).total_seconds()
-    print seconds
     if seconds < 1:
         return "just now"
     elif seconds < 60:
