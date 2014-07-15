@@ -1,6 +1,7 @@
 from app import db, app
 from hashlib import md5
 import flask.ext.whooshalchemy as whooshalchemy
+from timestamp_handler import howLongAgo
 
 ROLE_USER = 0
 ROLE_ADMIN = 1
@@ -27,9 +28,15 @@ class User(db.Model):
         lazy='dynamic'
     )
 
+    def pretty_last_seen(self):
+        return howLongAgo(self.last_seen)
+
     def followed_posts(self):
         return Post.query.join(followers,
             (followers.c.followed_id == Post.user_id)).filter(followers.c.follower_id == self.id).order_by(Post.timestamp.desc())
+
+    def sorted_posts(self):
+        return Post.query.filter(Post.user_id == self.id).order_by(Post.timestamp.desc())
 
     def follow(self, user):
         if not self.is_following(user):
@@ -86,5 +93,8 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post %r>' % (self.body)
+
+    def timeSincePost(self):
+        return howLongAgo(self.timestamp)
 
 whooshalchemy.whoosh_index(app, Post)

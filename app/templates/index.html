@@ -1,41 +1,48 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% include "flash.html" %}
+
 <h1>Hi, {{g.user.nickname}}!</h1>
 
-<form action="" method="post" name="post">
-    {{form.hidden_tag()}}
-    <p>
-        <label for="post">Say something:</label>
-    </p>
-    <p>
-        {{form.post(size=30, maxlength=140)}}
-    </p>
-    {% for error in form.errors.post %}
-    <span class="error">[{{error}}]</span><br>
-    {% endfor %}
+<div class="well">
+    <form class="form-horizontal" action="" method="post" name="post">
+        {{form.hidden_tag()}}
+        <div class="control-group{% if form.errors.post %} error {% endif %}"
+            <label class="control-label" for="post">Say something:</label>
+            <div class="controls">
+                {{ form.post(size=30, maxlength=140) }}
+                {% for error in form.errors.post %}
+                    <span class="help-inline">[{{error}}]</span><br>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <input class="btn btn-primary" type="submit" value="Post!">
+            </div>
+        </div>
+    </form>
+</div>
 
-    <input type="submit" value="Post!">
-</form>
 
 {% for post in posts.items %}
     {% include "post.html" %}
 {% endfor %}
 
-<hr>
-
-<div class="newer_posts">
+<ul class="pager">
     {% if posts.has_prev %}
-    <a href="{{ url_for('index', page=posts.prev_num) }}">Newer Posts</a>
+    <li class="previous"><a href="{{ url_for('index', page=posts.prev_num) }}">Newer Posts</a></li>
+    {% else %}
+    <li class="previous disabled"><a href="#">Newer Posts</a></li>
     {% endif %}
-</div>
 
-<div class="older_posts">
     {% if posts.has_next %}
-    <a href="{{ url_for('index', page=posts.next_num) }}">Older Posts</a>
+    <li class="next"><a href="{{ url_for('index', page=posts.next_num) }}">Older Posts</a></li>
+    {% else %}
+    <li class="next disabled"><a href="#">Older Posts</a></li>
     {% endif %}
-</div>
+</ul>
 
-<div class="clear"></div>
 
 {% endblock %}

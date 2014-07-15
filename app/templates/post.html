@@ -1,12 +1,11 @@
-<table>
+<div class="well">
     <div class="mini_avatar">
         <a href="{{ url_for('user', nickname=post.author.nickname)}}">
             <img src="{{post.author.avatar(50)}}" alt="{{post.author.nickname}}" />
         </a>
     </div>
     <div class="post_body">
-        <i><a href="{{ url_for('user', nickname=post.author.nickname)}}">{{post.author.nickname}}</a> says:</i><br>{{post.body}}
+        <i><a href="{{ url_for('user', nickname=post.author.nickname)}}">{{post.author.nickname}}</a> ({{post.timeSincePost()}})</i><br>{{post.body}}
     </div>
     <div class="clear"></div>
-
-</table>
+</div>

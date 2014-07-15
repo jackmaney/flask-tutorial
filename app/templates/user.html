@@ -11,7 +11,7 @@
     {% endif %}
     {% if user.last_seen %}
     <p>
-        <i>Last seen on: {{user.last_seen}}</i>
+        <i>Last seen: {{user.pretty_last_seen()}}</i>
     </p>
     {% endif %}
     <p>
