@@ -5,6 +5,7 @@ from forms import LoginForm, EditForm, PostForm, SearchForm
 from models import User, ROLE_USER, ROLE_ADMIN, Post
 from datetime import datetime
 from config import POSTS_PER_PAGE, MAX_SEARCH_RESULTS
+from emails import follower_notification
 
 @app.before_request
 def before_request():
@@ -98,6 +99,7 @@ def follow(nickname):
         return redirect(url_for('user', nickname=nickname))
     db.session.add(u)
     db.session.commit()
+    follower_notification(user, g.user)
     flash('You are now following ' + nickname + '!')
     return redirect(url_for('user', nickname=nickname))
 
