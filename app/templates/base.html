@@ -5,9 +5,10 @@
         {% else %}
         <title>microblog</title>
         {% endif %}
+        <link rel="stylesheet" href="/static/css/main.css" media="screen" charset="utf-8">
     </head>
     <body>
-        <div style="float: left;">
+        <div class="left">
             Microblog: <a href="{{ url_for('index') }}">Home</a>
             {% if g.user.is_authenticated() %}
             | <a href="{{ url_for('user', nickname=g.user.nickname) }}">Your Profile</a>
@@ -15,7 +16,7 @@
             {% endif %}
         </div>
         {% if g.user.is_authenticated() %}
-        <div style="float: right;">
+        <div class="right">
             <form action="{{url_for('search')}}" method="post" name="search">
                 {{ g.search_form.hidden_tag() }}
                 {{ g.search_form.search(size=20) }}
@@ -23,7 +24,7 @@
             </form>
         </div>
         {% endif %}
-        <div style="clear:both;"></div>
+        <div class="clear"></div>
         <hr>
         {% with messages = get_flashed_messages() %}
         {% if messages %}

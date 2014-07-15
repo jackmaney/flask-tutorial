@@ -1,14 +1,12 @@
 <table>
-    <div style="float: left;padding: 10px;">
+    <div class="mini_avatar">
         <a href="{{ url_for('user', nickname=post.author.nickname)}}">
             <img src="{{post.author.avatar(50)}}" alt="{{post.author.nickname}}" />
         </a>
     </div>
-    <div style="padding-top: 10px;">
+    <div class="post_body">
         <i><a href="{{ url_for('user', nickname=post.author.nickname)}}">{{post.author.nickname}}</a> says:</i><br>{{post.body}}
     </div>
-    <div style="clear:both;">
-
-    </div>
+    <div class="clear"></div>
 
 </table>

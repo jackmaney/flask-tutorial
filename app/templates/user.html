@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-<div style="float:left; padding:15px">
+<div class="main_avatar">
     <img src="{{user.avatar(128)}}" alt="{{user.nickname}}" />
 </div>
-<div style="padding-top:10px">
+<div class="profile_content">
     <h1>User: {{user.nickname}}</h1>
     {% if user.about_me %}<p>
         {{user.about_me}}
@@ -29,7 +29,7 @@
 
 
 </div>
-<div style="clear:both;"></div>
+<div class="clear"></div>
 <hr>
 {% for post in posts.items %}
     {% include "post.html" %}
@@ -37,18 +37,18 @@
 
 <hr>
 
-<div style="float:left;padding-top:20px">
+<div class="newer_posts">
     {% if posts.has_prev %}
     <a href="{{ url_for('user', nickname=user.nickname, page=posts.prev_num) }}">Newer Posts</a>
     {% endif %}
 </div>
 
-<div style="float:right;padding-top:20px">
+<div class="older_posts">
     {% if posts.has_next %}
     <a href="{{ url_for('user', nickname=user.nickname, page=posts.next_num) }}">Older Posts</a>
     {% endif %}
 </div>
 
-<div style="clear:both"></div>
+<div class="clear"></div>
 
 {% endblock %}

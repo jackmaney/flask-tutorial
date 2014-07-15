@@ -1,0 +1,18 @@
+.left{float: left;}
+.right{float: right;}
+.clear{clear: both;}
+
+.top_padded{padding-top: 10px;}
+.top_padded_20{padding-top: 20px;}
+
+.main_avatar{float:left; padding: 15px;}
+.mini_avatar{float:left; padding: 10px;}
+
+.post_body{padding-top: 10px;}
+
+.profile_content{padding-top: 10px;}
+
+.newer_posts{float:left;padding-top:20px}
+.older_posts{float:right;padding-top:20px}
+
+.error{color:red;}

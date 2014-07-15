@@ -12,7 +12,7 @@
         {{form.post(size=30, maxlength=140)}}
     </p>
     {% for error in form.errors.post %}
-    <span style="color: red;">[{{error}}]</span><br>
+    <span class="error">[{{error}}]</span><br>
     {% endfor %}
 
     <input type="submit" value="Post!">
@@ -24,18 +24,18 @@
 
 <hr>
 
-<div style="float:left;padding-top:20px">
+<div class="newer_posts">
     {% if posts.has_prev %}
     <a href="{{ url_for('index', page=posts.prev_num) }}">Newer Posts</a>
     {% endif %}
 </div>
 
-<div style="float:right;padding-top:20px">
+<div class="older_posts">
     {% if posts.has_next %}
     <a href="{{ url_for('index', page=posts.next_num) }}">Older Posts</a>
     {% endif %}
 </div>
 
-<div style="clear:both"></div>
+<div class="clear"></div>
 
 {% endblock %}

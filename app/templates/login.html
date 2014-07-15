@@ -21,7 +21,7 @@
         Please enter your OpenID, or select one of the providers below:<br>
         {{form.openid(size=80)}}<br>
         {% for error in form.errors.openid %}
-        <span style="color: red;">[{{error}}]</span>
+        <span class="error">[{{error}}]</span>
         {% endfor %}<br>
         |{% for pr in providers %}
         <a href="javascript:set_openid('{{pr.url}}', '{{pr.name}}');">{{pr.name}}</a> |
